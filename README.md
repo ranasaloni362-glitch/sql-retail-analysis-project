@@ -10,6 +10,8 @@ A single `orders` table with the following columns:
 - `order_id`, `customer_name`, `product`, `category`, `quantity`, `price`, `city`
 
 *(See `queries.sql` for the full table schema and sample data.)*
+<img width="1366" height="768" alt="Screenshot (2)" src="https://github.com/user-attachments/assets/f1957c94-e801-40eb-a912-4863f2029fba" />
+
 
 ## Business Questions Answered
 1. How many total orders were placed?
