@@ -1,0 +1,62 @@
+-- ============================================
+-- Retail Orders SQL Analysis
+-- ============================================
+
+-- 1. Create the table
+-- (paste your exact CREATE TABLE statement here)
+CREATE TABLE orders (
+    order_id INT PRIMARY KEY,
+    customer_name VARCHAR(50),
+    product VARCHAR(50),
+    category VARCHAR(50),
+    quantity INT,
+    price DECIMAL(10,2),
+    city VARCHAR(50)
+);
+
+-- 2. Insert sample data
+-- (paste your full 10-row INSERT statement here)
+-- INSERT INTO orders (order_id, customer_name, product, category, quantity, price, city)
+-- VALUES (...), (...), ...;
+
+
+-- ============================================
+-- Business Questions & Queries
+-- ============================================
+
+-- Q1: Total number of orders
+SELECT COUNT(*) AS Total_Orders FROM orders;
+
+-- Q2: Total revenue generated
+SELECT SUM(quantity*price) AS Total_Revenue FROM orders;
+
+-- Q3: Average order value
+SELECT AVG(price) AS Average_Order_Value FROM orders;
+
+-- Q4: Best-selling category by quantity
+SELECT category, SUM(quantity) AS Total_Quantity
+FROM orders
+GROUP BY category
+ORDER BY Total_Quantity DESC;
+
+-- Q5: Orders from a specific city, sorted by price (highest first)
+SELECT * FROM orders
+WHERE city = 'Mumbai'
+ORDER BY price DESC;
+
+-- Q6: Cities with total revenue above a threshold
+SELECT city, SUM(quantity*price) AS Total_Revenue
+FROM orders
+GROUP BY city
+HAVING SUM(quantity*price) > 5000;
+
+-- Q7: Categories with more than 2 orders
+SELECT category, COUNT(*) AS Order_Count
+FROM orders
+GROUP BY category
+HAVING COUNT(*) > 2;
+
+-- Q8: Top 3 highest-value orders
+SELECT * FROM orders
+ORDER BY price DESC
+LIMIT 3;
